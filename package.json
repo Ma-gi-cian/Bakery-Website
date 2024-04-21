@@ -16,11 +16,12 @@
     "@reduxjs/toolkit": "^2.2.3",
     "@tanstack/react-table": "^8.15.3",
     "axios": "^1.6.8",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.363.0",
+    "mongodb": "^6.5.0",
     "mongoose": "^8.3.1",
     "next": "14.1.4",
     "next-auth": "^4.24.7",
@@ -35,6 +36,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

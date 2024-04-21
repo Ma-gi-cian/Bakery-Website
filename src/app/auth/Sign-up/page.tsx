@@ -1,21 +1,62 @@
 'use client'
 import { CiLogin } from "react-icons/ci";
+import Database from "@/lib/database";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import React, { HtmlHTMLAttributes, useState } from "react";
 import { useSession, signOut, signIn } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
+import axios from 'axios'
 export default function Home(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {toast} = useToast();
+    //Database();
+
+    async function   createUser(name : string, email : string , password : string) {
+        axios.post('/api/Signup', {
+            name : name,
+            email : email, 
+            password : password
+        }).then((response) => {
+            console.log("--:"+name + email + password);
+            console.log(response)
+            if(response.status != 200){
+                toast({
+                    variant : "destructive",
+                    title : "user error"
+                })
+            }
+            else {
+                toast({
+                    variant : "default",
+                    title : "user created."
+                })
+            }
+        }
+    )
+
+    }
     
-    const SignupButtonHandler = () => {
-        console.log({name : name, email : email, password : password})
-        setName("");
-        setPassword("");
-        setEmail("");
+    const SignupButtonHandler = async() => {
+        try{
+            const result = await createUser(name, email , password);
+            toast({
+                variant : "default",
+                title : `Message : ${result}`
+            })
+        }
+        catch(error){
+            toast({
+                variant : "destructive",
+                title : "Error Encountered",
+                description : `${error}`
+            })
+            console.log(error);
+        }
     }
     return(
         <main className = "flex items-center justify-center py-8">

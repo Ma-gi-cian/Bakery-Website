@@ -9,7 +9,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import {GiCupcake} from "react-icons/gi";
 import { useSession, signOut, signIn } from "next-auth/react";
 export default function Navbar(){
-    const {data : session} = useSession();
+    //const {data : session} = useSession();
     const ButtonHandler = (path : string) => {
         window.location.href = path;
     }
@@ -30,13 +30,14 @@ export default function Navbar(){
             return `text-lg`;
         }
     }
+    const [isloggedIn, setIsLoggedIn] = useState(false)
     return(
         <header className = "w-full">
             <div className = "w-full  flex items-center justify-between my-2">
                 <div>
                     <Link className = "flex items-center justify-center text-red-800  gap-2 font-curve text-3xl" href = "/">The Pastery <span className = "text-rose-800 text-3xl"><GiCupcake/></span> Palace</Link>
                 </div>
-                {session ? (<div className = " flex items-center justify-center gap-4 rounded-md p-2"><Link className = "flex items-center justify-center gap-4" href = "/"><CiUser/><div className = "flex items-center justify-center  gap-2"><p>{session?.user?.name}</p></div></Link><Button onClick = {() => signOut()} variant={'destructive'}>LogOut</Button></div>) : (<div className = "flex items-center justify-center gap-4">
+                {isloggedIn ? (<div className = " flex items-center justify-center gap-4 rounded-md p-2"><Link className = "flex items-center justify-center gap-4" href = "/"><CiUser/><div className = "flex items-center justify-center  gap-2"><p>{"Aditya"/*session?.user?.name*/}</p></div></Link><Button onClick = {() => signOut()} variant={'destructive'}>LogOut</Button></div>) : (<div className = "flex items-center justify-center gap-4">
                     <Button onClick = {() => ButtonHandler('/auth/Sign-up')}>Sign Up</Button>
                     <Button onClick = {() => ButtonHandler('/auth/Login')}>Login</Button>
                     </div>)}
