@@ -18,9 +18,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  //const session = await getServerSession();
+  const session = await getServerSession();
   return (
-    
+    <SessionProvider session={session}>
       <Providers >
     <html lang="en">
       <body className={inter.className + `mx-24  px-12`}>
@@ -31,9 +31,7 @@ export default async function RootLayout({
         
     </html>
       </Providers>
-      
+      </SessionProvider>
   );
 }
 
-//<SessionProvider session={session}>
-//</SessionProvider>

@@ -5,35 +5,38 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import React, { HtmlHTMLAttributes, useState } from "react";
-import { useSession, signOut, signIn } from "next-auth/react";
+import {signOut, signIn } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
-import axios from 'axios'
+import axios, {AxiosError} from 'axios'
 export default function Home(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const {toast} = useToast();
+    
     //Database();
+    
 
     async function   createUser(name : string, email : string , password : string) {
-        axios.post('/api/Signup', {
+        await axios.post('/api/auth/Signup', {
             name : name,
             email : email, 
             password : password
         }).then((response) => {
-            console.log("--:"+name + email + password);
-            console.log(response)
+            //console.log("--:"+name + email + password);
             if(response.status != 200){
                 toast({
                     variant : "destructive",
-                    title : "user error"
+                    title : "Error",
+                    description : `${response.data.message}`
                 })
             }
             else {
                 toast({
                     variant : "default",
                     title : "user created."
+
                 })
             }
         }
@@ -42,21 +45,19 @@ export default function Home(){
     }
     
     const SignupButtonHandler = async() => {
-        try{
-            const result = await createUser(name, email , password);
-            toast({
-                variant : "default",
-                title : `Message : ${result}`
-            })
-        }
-        catch(error){
+        await createUser(name, email , password);
+            /*
             toast({
                 variant : "destructive",
                 title : "Error Encountered",
-                description : `${error}`
+                description : `Error : ${error.response.data.message}`
             })
-            console.log(error);
-        }
+            */
+            //console.log(error);
+        
+        setEmail("");
+        setName("");
+        setPassword("");
     }
     return(
         <main className = "flex items-center justify-center py-8">
