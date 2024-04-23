@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { Providers } from "@/redux/Provider";
 import { getServerSession } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
-import {Analytics} from "@vercel/analytics";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: "The Pastry Palace",
