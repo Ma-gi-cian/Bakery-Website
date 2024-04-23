@@ -16,7 +16,7 @@ export default function ContactPage(){
     const [Email, setEmail] = useState("");
     return(
         <section 
-            className = "h-50vh  w-full pb-16  "
+            className = "h-50vh  w-full pb-16 "
             id = "contact"
             
         >
@@ -27,7 +27,7 @@ export default function ContactPage(){
             </div>
             <div className = "flex items-center flex-col md:flex-row justify-around mt-8 w-full gap-2">
                 <div className = "font-serif flex flex-col items-center justify-center mt-2 text-center md:text-left w-1/2 ">
-                    <h1 className = "text-2xl mt-1">Let's Chat 👋</h1>
+                    <h1 className = "text-2xl mt-1">Let&apos;s Chat 👋</h1>
                     <h1 className = "text-2xl mt-2">Tell us about any of your queries.</h1>
                     <p className = "my-4 ">We will respond within the next 6 Hours.</p>
                 </div>
@@ -53,10 +53,10 @@ export default function ContactPage(){
                     </form>
                     </div>
                     ) : (
-                        <div className = "flex items-center justify-between pb-16 w-full pt-2 ">
+                        <div className = "flex items-center justify-between pb-16 w-full pt-2">
                             <div className = "w-100% flex items-center flex-col gap-4">
                                 <h1 className = "text-xl font-serif w-fit font-light text-center">THANK YOU FOR THE MESSAGE</h1>
-                                <button type = "button" className = "font-serif w-fit rounded-md text-black border-gray-400 border-2 p-2 hover:bg-black hover:text-white bg-white " onClick={AgainSubmitHandler}>Send Message Again!</button>
+                                <button type = "button" className = "font-serif w-fit rounded-md text-black border-gray-400 border-2 p-2 hover:bg-black hover:text-white bg-white " onClick={AgainSubmitHandler}>Send Message Again</button>
                             </div>
                         </div>
                     )}

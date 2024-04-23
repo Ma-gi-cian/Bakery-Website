@@ -53,8 +53,8 @@ export default function Home(){
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {cartItems.map((item) => (
-                                <TableRow>
+                            {cartItems.map((item, index) => (
+                                <TableRow key = {index}>
                                     <TableCell className = "flex items-center justify-center">
                                         <div><Image className = "rounded-md" src = {item.image} alt = {item.name} width = {100} height = {100} /></div>
                                     </TableCell>

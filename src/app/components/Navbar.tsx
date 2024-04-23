@@ -15,7 +15,7 @@ export default   function Navbar(){
     }
 
     async function handlerGoogleSignIn(){
-        console.log("clicked Google signin")
+        //console.log("clicked Google signin")
         signIn('google', {callbackUrl : 'http://localhost:3000'})
     }
     

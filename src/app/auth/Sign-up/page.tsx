@@ -25,6 +25,7 @@ export default function Home(){
             password : password
         }).then((response) => {
             //console.log("--:"+name + email + password);
+            
             if(response.status != 200){
                 toast({
                     variant : "destructive",
@@ -39,6 +40,10 @@ export default function Home(){
 
                 })
             }
+            
+           //console.log({
+           // Signup : response
+           //})
         }
     )
 

@@ -1,8 +1,11 @@
+'use server'
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import {User} from "@/models/user.model";
 import Database from '@/lib/database';
 import { verifyPassword } from '@/lib/auth';
+import { verify } from 'crypto';
+//console.log("nextauth folder");
 const handler  =  NextAuth({
     session : {
         jwt : true,
@@ -10,27 +13,18 @@ const handler  =  NextAuth({
     providers : [
         Credentials({
             async authorize(credentials){
+                //console.log("async handler");
                 await Database();
-                console.log(`The credentials are : `);
-                console.log( credentials)
-                console.log(`NextAuth :- email : ${credentials.email} password : ${credentials.password}`)
                 const user = await User.findOne({email : credentials.email});
-                console.log({
-                    user : user
-                });
-                if(!user){
-                    throw new Error('User does not exist');
-                    //return Response.json({message : "User Does not exist"});
+                //console.log({user : user});
+                const valid = await verifyPassword(credentials.password, user.password)
+                //console.log("helloworld");
+                if(user && valid){
+                    return user;
                 }
-                
-                const isValid = await verifyPassword(credentials.password, user.password);
-
-                if(!isValid){
-                    throw new Error('Not valid');
-                    //return Response.json({message : "Enter correct credentials"})
+                else{
+                    return null;
                 }
-                //console.log(`user : ${user}, isValid : ${isValid}`);
-                return {email : user.email , name : user.name};
             }
         })
     ]
