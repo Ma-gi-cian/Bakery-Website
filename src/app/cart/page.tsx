@@ -13,14 +13,16 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
-import { useDispatch } from "react-redux";
-import { TbPentagon } from "react-icons/tb";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 
 const datas = ['Image', 'Product', 'Price', 'Quantity', 'How to Customize']
 export default function Home(){
     const {cartItems} = useAppSelector(state => state.cart);
     const dispatch = useAppDispatch();
-
+    const {data : session} = useSession();
+    const {toast} = useToast();
     const increase = ( name: string) => {
         
         dispatch(increaseHandler({name}))
@@ -32,6 +34,27 @@ export default function Home(){
     }
     const DeleteHandler = (name : string) =>{
         dispatch(deleteHandler({name}));
+    }
+
+    async function createOrder(address : string, products : object){
+        await axios.post('/api/Order', {
+            name : session?.user?.name,
+            email : session?.user?.email,
+            address : address,
+            Products : products
+        }).then((response) => {
+            console.log(response);
+        })
+    }
+
+    const placeButton = async() => {
+        console.log("clicked -- placeButton");
+        await createOrder("Jaigaon", cartItems);
+        console.log("Order Placed Check database");
+        toast({
+            variant : "default",
+            title : "created order"
+        })
     }
 
     var total = 0 ;
@@ -76,7 +99,7 @@ export default function Home(){
                     </Table>
                     <div className = "flex items-center gap-2 justify-center flex-col">
                         <p className = "text-xl font-semibold">Your total amount is : ${total}</p>
-                        <Button className = "bg-green-800">Proceed to Pay</Button>
+                        <Button onClick = {placeButton} className = "bg-green-800">Proceed to Pay</Button>
                     </div>
                 </section>
                 

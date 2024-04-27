@@ -10,9 +10,9 @@ export default function Herosection(){
         <section className = "w-full bg-hero-pattern   relative py-16 px-12 text-left space-y-6 h-full">
             <div className = "w-full  h-full z-0"/>
            <div className = "w-full h-full space-y-6 z-100">
-                <h1 className = "text-rose-400 drop-shadow-md new text-5xl bg-white rounded-lg px-4 py-2 w-fit font-semibold">INDULGE IN</h1>
-                <h1 className = "text-rose-400 drop-shadow-md new text-5xl bg-white rounded-lg px-4 py-2 w-fit font-semibold">HEAVENLY </h1>
-                <h1 className = "text-rose-400 drop-shadow-md new text-5xl bg-white rounded-lg px-4 py-2 w-fit font-semibold">SWEET DELIGHTS</h1>
+                <h1 className = "text-rose-400 drop-shadow-md new sm:text-5xl bg-white text-2xl rounded-lg px-4 py-2 w-fit font-semibold">INDULGE IN</h1>
+                <h1 className = "text-rose-400 drop-shadow-md new sm:text-5xl bg-white text-2xl rounded-lg px-4 py-2 w-fit font-semibold">HEAVENLY </h1>
+                <h1 className = "text-rose-400 drop-shadow-md new sm:text-5xl bg-white text-2xl rounded-lg px-4 py-2 w-fit font-semibold">SWEET DELIGHTS</h1>
 
                 <p className = "text-red-700 px-4 py-2 rounded-lg w-fit bg-white font-serif text-lg">Cakes and Pastries for you from the Pastry Palace</p>
                 <Button className = "bg-rose-700 cursor-pointer mx-4 z-10" onClick={clickhandler} variant={'link'}>Our Products</Button>

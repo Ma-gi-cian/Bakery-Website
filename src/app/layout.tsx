@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { Providers } from "@/redux/Provider";
 import { getServerSession } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
-import { Analytics } from '@vercel/analytics/react';
+
 
 export const metadata: Metadata = {
   title: "The Pastry Palace",
@@ -28,7 +28,7 @@ export default async function RootLayout({
       <body className={inter.className + `mx-24  px-12`}>
         <Navbar/>
         {children}
-        <Analytics/>
+        
         <Toaster/>
         </body>
         

@@ -20,16 +20,16 @@ export default function ContactPage(){
             id = "contact"
             
         >
-            <div className = "flex gap-4 items-center justify-between">
+            <div className = "flex w-full gap-4 items-center justify-between">
                 <div className = "border-t-4 border-black w-2/5"></div>
                 <h1 className = "text-5xl font-bold font-serif text-center text-black">Contact</h1>
                 <div className = "border-t-4 border-black w-2/5"></div>
             </div>
-            <div className = "flex items-center flex-col md:flex-row justify-around mt-8 w-full gap-2">
-                <div className = "font-serif flex flex-col items-center justify-center mt-2 text-center md:text-left w-1/2 ">
-                    <h1 className = "text-2xl mt-1">Let&apos;s Chat 👋</h1>
-                    <h1 className = "text-2xl mt-2">Tell us about any of your queries.</h1>
-                    <p className = "my-4 ">We will respond within the next 6 Hours.</p>
+            <div className = "flex  items-center flex-col md:flex-row justify-around mt-8 w-full gap-2">
+                <div className = "font-serif flex space-y-6 flex-col w-full items-center justify-center mt-2 text-center md:text-left sm:w-1/2 ">
+                    <h1 className = "text-2xl w-full md:w-fit mt-1">Let&apos;s Chat 👋</h1>
+                    <h1 className = "text-2xl w-full md:w-fit mt-2">Tell us about any of your queries.</h1>
+                    <p className = "my-4 w-full md:w-fit">We will respond within the next 6 Hours.</p>
                 </div>
                 <div>
                     {!sendmessage ? (

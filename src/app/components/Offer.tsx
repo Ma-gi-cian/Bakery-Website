@@ -28,12 +28,12 @@ export default function Offer(){
     }
     return(
         <section className = "w-full ">
-            <div className = "w-full flex items-center gap-4 mt-8 justify-center">
+            <div className = "w-full flex items-center text-lg sm:text-3xl gap-4 mt-8 justify-center">
                 <div className = "bg-rose-400 h-[1px] w-1/5 rounded-md"/>
-                <h1 className = "text-center new text-3xl text-rose-400">What We Offer</h1>
+                <h1 className = "text-center new  text-rose-400">What We Offer</h1>
                 <div className = "bg-rose-400 h-[1px] w-1/5 rounded-md"/>
             </div>
-            <div className = "grid grid-cols-3 gap-8 w-full py-4">
+            <div className = "grid sm:grid-cols-3 grid-cols-1 gap-8 w-full py-4">
                 {data.map((d) => (
                     <div key = {d.id} className = "flex py-2 items-center mt-4 justify-center gap-4 flex-col rounded-md bg-rose-100 ">
                         <div className = "border-2 bg-white border-rose-300 p-2 rounded-md">

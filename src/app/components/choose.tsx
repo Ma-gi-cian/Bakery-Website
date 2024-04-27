@@ -37,7 +37,7 @@ export default function Choose(){
               <div className = "w-1/5 h-[1px] bg-rose-400"/>
             </div>
             <div className = "flex items-center justify-center">
-                <div className = "grid grid-cols-2 gap-16 py-4">
+                <div className = "grid grid-cols-1 sm:grid-cols-2 gap-16 py-4">
                     {data.map((d) => (
                         <div key = {d.id} className = "  max-w-[30rem] space-y-6 bg-rose-100 mt-4 rounded-md py-4 px-2" >
                             <div className = "md:flex-shrink-0 flex justify-center">
