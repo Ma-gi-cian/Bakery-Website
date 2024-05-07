@@ -37,7 +37,7 @@ export default   function Navbar(){
                 <div className = "w-full sm:w-fit">
                     <Link className = "flex items-center text-lg sm:text-2xl justify-center text-red-800  gap-2 font-curve md:text-3xl" href = "/">The Pastery <span className = "text-rose-800 text-3xl"><GiCupcake/></span> Palace</Link>
                 </div>
-                {session ? (<div className = "hidden sm:visible"><div className = " flex  items-center justify-center gap-4 rounded-md p-2"><Link className = "flex items-center justify-center gap-4" href = "/"><CiUser/><div className = "flex items-center justify-center  gap-2"><p>{session?.user?.name}</p></div></Link><Button onClick = {() => signOut()} variant={'destructive'}>LogOut</Button></div></div>) : (<div className = "hidden sm:contents"><div className = "flex items-center justify-center gap-4">
+                {session ? (<div className = "hidden sm:contents"><div className = " flex  items-center justify-center gap-4 rounded-md p-2"><Link className = "flex items-center justify-center gap-4" href = "/"><CiUser/><div className = "flex items-center justify-center  gap-2"><p>{session?.user?.name}</p></div></Link><Button onClick = {() => signOut()} variant={'destructive'}>LogOut</Button></div></div>) : (<div className = "hidden sm:contents"><div className = "flex items-center justify-center gap-4">
                     <Button onClick = {() => ButtonHandler('/auth/Sign-up')}>Sign Up</Button>
                     <Button onClick = {() => ButtonHandler('/auth/Login')}>Login</Button>
                     </div></div>)}

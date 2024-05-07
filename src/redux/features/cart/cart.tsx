@@ -7,7 +7,7 @@ interface singleData {
     image : string, 
     price : number,
     quantity : number,
-    customizable : boolean
+    customizable : boolean,
 }
 
 

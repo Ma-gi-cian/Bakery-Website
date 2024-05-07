@@ -1,5 +1,7 @@
 'use client'
 import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
+
+import {loadStripe} from "@stripe/stripe-js";
 import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import Link from "next/link";
@@ -16,9 +18,11 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
+import { stripe } from "@/lib/get-stripe";
 
 const datas = ['Image', 'Product', 'Price', 'Quantity', 'How to Customize']
 export default function Home(){
+    const stripePromise = loadStripe("pk_test_51OnDMFSHOFSYbtCbOwEtmW81UzrRR2TxxhdlvtEnqvGnKxwv6as3hU44cDwKqwxbcB3nH3n4bGaCJ5y51mXY1WYb00WcYXEozo")
     const {cartItems} = useAppSelector(state => state.cart);
     const dispatch = useAppDispatch();
     const {data : session} = useSession();
@@ -47,9 +51,24 @@ export default function Home(){
         })
     }
 
-    const placeButton = async() => {
+    const placeButton = async(address : string, products : object) => {
+        const stripeCheckout = await stripePromise
+        const stripesession  = await axios.post('/api/checkout', {
+            name : session?.user?.name,
+            email : session?.user?.email,
+            address : address,
+            Products : products
+        })
+        try{
+            //await stripeCheckout?.redirectToCheckout({sess})
+            //console.log(stripesession.data.stripeSession.id);
+            await stripeCheckout?.redirectToCheckout({sessionId : stripesession.data.stripeSession.id})
+        }
+        catch(error){
+            console.log(error);
+        }
         console.log("clicked -- placeButton");
-        await createOrder("Jaigaon", cartItems);
+        
         console.log("Order Placed Check database");
         toast({
             variant : "default",
@@ -99,7 +118,7 @@ export default function Home(){
                     </Table>
                     <div className = "flex items-center gap-2 justify-center flex-col">
                         <p className = "text-xl font-semibold">Your total amount is : ${total}</p>
-                        <Button onClick = {placeButton} className = "bg-green-800">Proceed to Pay</Button>
+                        <Button onClick = {() => placeButton('jaigaon', cartItems)} className = "bg-green-800">Proceed to Pay</Button>
                     </div>
                 </section>
                 
