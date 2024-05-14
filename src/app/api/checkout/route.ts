@@ -28,7 +28,7 @@ export async function POST(req : Request){
             })
         ));
         await Database();
-        await Order.create({username : name, Address :  address, Email : email, cartProducts : products, });
+        const order = await Order.create({username : name, Address :  address, Email : email, cartProducts : products, });
         try{
             const session = await stripe.checkout.sessions.create({
                 mode: 'payment',
@@ -36,10 +36,13 @@ export async function POST(req : Request){
                 phone_number_collection : {
                     enabled : true
                 },
-                success_url : "http://localhost:3000/product",
-                cancel_url : 'http://localhost:3000/home',
+                success_url : `${process.env.NEXT_PUBLIC_WEBSITE_URL}/product`,
+                cancel_url : `${process.env.NEXT_PUBLIC_WEBSITE_URL}/home`,
                 line_items : line_items,
-                payment_method_types : ["card"]
+                payment_method_types : ["card"],
+                metadata : {
+                    orderId : order.id
+                }
             })
             //console.log(session);
             return NextResponse.json({stripeSession : session}, {status : 200})

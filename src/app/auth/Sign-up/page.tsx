@@ -73,8 +73,7 @@ export default function Home(){
                 <input value = {password} type = "password" className = "px-4 py-2 rounded-md border-2 w-full border-black" onChange = {(e : React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} placeholder = "Password"/>
                 <Button onClick = {SignupButtonHandler} className = "w-full rounded-md border-2 px-4 py-2">Sign Up</Button>
                 <div className = "flex items-center justify-between w-full ">
-                    <Button className = "flex bg-white text-black hover:bg-slate-400 items-center justify-center gap-4"><FcGoogle /> Google</Button>
-                    <Button className = "flex bg-white text-blue items-center hover:bg-slate-400 justify-center gap-4"><FaFacebook/> Facebook</Button>
+                    <Button className = "flex w-full bg-white text-black hover:bg-slate-400 items-center justify-center gap-4"><FcGoogle /> Google</Button>
                 </div>
                 <p className = "text-lg font-serif">Already Have an account? Login <Link className = "text-blue-500 underline" href = "/auth/Login">here</Link> </p>
             </section>

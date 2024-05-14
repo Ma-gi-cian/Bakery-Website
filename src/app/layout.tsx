@@ -25,7 +25,7 @@ export default async function RootLayout({
       <Providers >
     <html lang="en">
 
-      <body className={inter.className + `mx-24  px-12`}>
+      <body className={inter.className + `mx-24 px-2 sm:px-12`}>
         <Navbar/>
         {children}
         

@@ -5,18 +5,16 @@ import GoogleProvider from 'next-auth/providers/google'
 import {User} from "@/models/user.model";
 import Database from '@/lib/database';
 import { verifyPassword } from '@/lib/auth';
-import { verify } from 'crypto';
-// client_id = "287260589548-1mbbl30o0gqacpjqm90gomk29ll63nms.apps.googleusercontent.com"
-// client_secret = "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"
-//console.log("nextauth folder");
+
+
 const handler  =  NextAuth({
     session : {
         jwt : true,
     },
     providers : [
         GoogleProvider({
-            clientId : "287260589548-1mbbl30o0gqacpjqm90gomk29ll63nms.apps.googleusercontent.com",
-            clientSecret : "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"
+            clientId : process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+            clientSecret : process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
         }),
 
         Credentials({

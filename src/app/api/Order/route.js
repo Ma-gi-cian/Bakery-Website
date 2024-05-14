@@ -8,8 +8,8 @@ export async function GET(){
 
 export async function POST(req){
     const data = await req.json();
-    console.log("hello");
-    console.log(data);
+    //console.log("hello");
+    //console.log(data);
     const Products = data.Products;
     const username = data.name;
     const email  = data.email;
@@ -21,6 +21,6 @@ export async function POST(req){
     }
     await Database();
     const orderCreated = await Order.create({username : username, Address :  address, Email : email, cartProducts : Products});
-    console.log(orderCreated);
+    //console.log(orderCreated);
     return Response.json({message : "Order created."})
 }

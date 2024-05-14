@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
 
 import {loadStripe} from "@stripe/stripe-js";
 import Image from "next/image";
+import { useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import Link from "next/link";
 import { increaseHandler, minusHandler, deleteHandler } from "@/redux/features/cart/cart";
@@ -15,6 +16,7 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
+import { ProtectedRoutes } from "@/lib/getAuthentication";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
@@ -22,16 +24,20 @@ import { stripe } from "@/lib/get-stripe";
 
 const datas = ['Image', 'Product', 'Price', 'Quantity', 'How to Customize']
 export default function Home(){
-    const stripePromise = loadStripe("pk_test_51OnDMFSHOFSYbtCbOwEtmW81UzrRR2TxxhdlvtEnqvGnKxwv6as3hU44cDwKqwxbcB3nH3n4bGaCJ5y51mXY1WYb00WcYXEozo")
+    const stripePromise = loadStripe(process.env.NEXT_PUBLIC_PUBLISHABLE_KEY as string)
     const {cartItems} = useAppSelector(state => state.cart);
     const dispatch = useAppDispatch();
     const {data : session} = useSession();
     const {toast} = useToast();
+    
     const increase = ( name: string) => {
         
         dispatch(increaseHandler({name}))
         console.log("Increase Handler")
     }
+    useEffect(() => {
+        ProtectedRoutes();
+    }, [])
     const decreaseHandler = (name : string) => {
         dispatch(minusHandler({name}));
         console.log("Decrese clicked.")
@@ -75,6 +81,7 @@ export default function Home(){
             title : "created order"
         })
     }
+   
 
     var total = 0 ;
     cartItems.map((item) => {
@@ -127,5 +134,7 @@ export default function Home(){
         </main>
     );
 }
+
+
 
 // <DataTable columns={columns} data = {cartItems} />

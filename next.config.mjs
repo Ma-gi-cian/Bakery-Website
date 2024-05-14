@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    
-    images : {
-        domains : ['images.unsplash.com','a0.muscache.com'],
-    }
+    images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'images.unsplash.com',
+            port: '',
+            pathname: '**',
+          },
+        ],
+      },
 };
+
+//domains : ['images.unsplash.com','a0.muscache.com'],
 
 export default nextConfig;
