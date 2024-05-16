@@ -7,7 +7,7 @@ import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
 
 export async function POST(req : Request){
-    const body = await buffer(req);
+    const body = await req.text();
     const signature = headers().get("Stripe-Signature") as string;
     console.log({
         signature : signature,    
@@ -40,19 +40,3 @@ export async function POST(req : Request){
     return NextResponse.json({}, {status : 200});
 }
 
-
-const buffer = (req: Request) => {
-    return new Promise<Buffer>((resolve, reject) => {
-      const chunks: Buffer[] = [];
-  
-      req.on('data', (chunk: Buffer) => {
-        chunks.push(chunk);
-      });
-  
-      req.on('end', () => {
-        resolve(Buffer.concat(chunks));
-      });
-  
-      req.on('error', reject);
-    });
-  };
