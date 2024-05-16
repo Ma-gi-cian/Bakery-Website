@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import {buffer} from 'micro';
 import {headers} from "next/headers";
 import { NextApiRequest } from 'next';
 import { NextResponse } from "next/server";
@@ -6,12 +7,10 @@ import { stripe } from "@/lib/get-stripe";
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
 
-export async function POST(req : Request){
-    const body = await req.text();
+export async function POST(req : NextApiRequest){
+    const body = await buffer(req);
     const signature = headers().get("Stripe-Signature") as string;
-    console.log({
-        webhook_secret_key : process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET
-    })
+    
     let event: Stripe.Event;
     
 
@@ -20,6 +19,7 @@ export async function POST(req : Request){
             body,
             signature,
             process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET!)
+        console.log(event);
     }
     catch (error : any){
         console.log(error);
