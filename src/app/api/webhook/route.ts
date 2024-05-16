@@ -8,7 +8,10 @@ import Database from '@/lib/database';
 export async function POST(req : Request){
     const body = await req.text();
     const signature = headers().get("Stripe-Signature") as string;
-
+    console.log({
+        body : body,
+        signature : signature,    
+    })
     let event: Stripe.Event;
     
 
