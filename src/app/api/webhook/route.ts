@@ -6,7 +6,7 @@ import { stripe } from "@/lib/get-stripe";
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
 
-export async function POST(req : NextApiRequest){
+export async function POST(req : Request){
     const body = await buffer(req);
     const signature = headers().get("Stripe-Signature") as string;
     console.log({
@@ -41,7 +41,7 @@ export async function POST(req : NextApiRequest){
 }
 
 
-const buffer = (req: NextApiRequest) => {
+const buffer = (req: Request) => {
     return new Promise<Buffer>((resolve, reject) => {
       const chunks: Buffer[] = [];
   
