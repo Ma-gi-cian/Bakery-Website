@@ -7,7 +7,7 @@ import { stripe } from "@/lib/get-stripe";
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
 
-export async function POST(req : NextApiRequest){
+export async function POST(req : any){
     const body = await buffer(req);
     const signature = headers().get("Stripe-Signature") as string;
     
