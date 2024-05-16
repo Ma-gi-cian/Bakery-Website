@@ -26,6 +26,7 @@ export async function POST(req : Request){
     await Database();
     if (event.type == "checkout.session.completed"){
         //console.log("hello world");
+        console.log(event);
         const update_order = await Order.findOneAndUpdate({_id : orderId }, {paid : true}, {new : true});
         //console.log(update_order);
         
