@@ -7,8 +7,8 @@ import { stripe } from "@/lib/get-stripe";
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
 
-export async function POST(req : any){
-    const body = await buffer(req);
+export async function POST(req : Request){
+    const body = await req.text();
     const signature = headers().get("Stripe-Signature") as string;
     
     let event: Stripe.Event;
