@@ -38,6 +38,7 @@ export default function Home(){
     useEffect(() => {
         if(!session){
             toast({
+                variant : "destructive",
                 title : "Please Login to access the Cart"
             })
             setTimeout(ProtectedRoutes, 3000);
