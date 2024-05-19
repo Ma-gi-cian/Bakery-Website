@@ -1,11 +1,13 @@
 import Stripe from 'stripe';
-import {buffer} from 'micro';
+
 import {headers} from "next/headers";
 import { NextApiRequest } from 'next';
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/get-stripe";
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
+
+
 
 export async function POST(req : Request){
     const body = await req.text();
@@ -32,7 +34,7 @@ export async function POST(req : Request){
         //console.log("hello world");
         console.log(event);
         const update_order = await Order.findOneAndUpdate({_id : orderId }, {paid : true}, {new : true});
-        //console.log(update_order);
+        console.log(update_order);
         
         //console.log(`Payment of Order id : ${orderId} succeeded check the database`);
     }

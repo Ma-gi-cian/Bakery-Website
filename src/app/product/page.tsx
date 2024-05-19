@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button"
 import Data from "@/Data"
 import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
 import { addToCart } from "@/redux/features/cart/cart";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
-export default function Home(){
+import { Elsie_Swash_Caps } from "next/font/google";
+export default  function Home(){
 
     const dispatch = useAppDispatch();
     const {toast} = useToast();
@@ -27,6 +28,7 @@ export default function Home(){
         url : "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         quantity : 1,
     }
+    const session =  useSession();
 
     const ReduxButtonHandler = (id : number, name : string, image : string, price : number, quantity : 1, customizable : boolean) => {
         const product_data = {
@@ -37,10 +39,20 @@ export default function Home(){
             quantity : 1,
             customizable: customizable
         }
-        dispatch(addToCart(product_data));
+        console.log(session.status);
+        if(session.status == "unauthenticated"){
+            toast({
+                variant : "destructive",
+                title : "Please Login to Add Products to your cart."
+            })
+        }
+        else{
+            dispatch(addToCart(product_data));
         toast({
             title : `${product_data.name} added to the Cart`,
         })
+        }
+        
         //console.log(product_data)
     }
     return(

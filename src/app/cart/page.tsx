@@ -39,7 +39,7 @@ export default function Home(){
         toast({
             variant : "destructive",
             title : "Please Login to access cart.",
-            description : "Redirect to Login Page."
+            description : "Redirecting  to Login Page."
         })
 
         setTimeout(ProtectedRoutes, 2000);
