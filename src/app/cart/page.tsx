@@ -36,13 +36,12 @@ export default function Home(){
         console.log("Increase Handler")
     }
     useEffect(() => {
-        toast({
-            variant : "destructive",
-            title : "Please Login to access cart.",
-            description : "Redirecting  to Login Page."
-        })
-
-        setTimeout(ProtectedRoutes, 2000);
+        if(!session){
+            toast({
+                title : "Please Login to access the Cart"
+            })
+            setTimeout(ProtectedRoutes, 3000);
+        }
     }, [])
     const decreaseHandler = (name : string) => {
         dispatch(minusHandler({name}));
