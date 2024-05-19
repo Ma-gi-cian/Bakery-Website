@@ -55,7 +55,7 @@ export default function Login(){
             {session ? (<section>
                 <h1 className = "text-xl text-center">You are Logged In !!</h1>
             </section>) : (<section className = "flex mt-8 items-center flex-col justify-center bg-rose-200 px-8 py-4 space-y-6 min-w-[20rem] rounded-md">
-                <h1 className = "text-3xl flex items-center justify-center gap-4 font-serif">Login <CiLogin/></h1>
+                <h1 className = "text-2xl flex items-center justify-center gap-4 font-serif">Login <CiLogin/></h1>
                 <input value = {email} type = "email" onChange = {(e : React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className = "px-4 py-2 rounded-md border-2 w-full border-black" placeholder="Email"/>
                 <input value = {password} type = 'password' onChange = {(e : React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className = "px-4 py-2 rounded-md border-2 w-full border-black" placeholder = "Password"/>
                 <Button onClick = {LoginHandler} className = "w-full rounded-md border-2 px-4 py-2">Login</Button>

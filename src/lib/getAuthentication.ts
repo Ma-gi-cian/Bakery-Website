@@ -4,6 +4,6 @@ export async function ProtectedRoutes(){
     const session = await getSession();
     if(!session){
         //console.log("No session")
-        window.location.href = '/'
+        window.location.href = '/auth/Login'
     }
 }

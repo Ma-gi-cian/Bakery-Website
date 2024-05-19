@@ -36,7 +36,13 @@ export default function Home(){
         console.log("Increase Handler")
     }
     useEffect(() => {
-        ProtectedRoutes();
+        toast({
+            variant : "destructive",
+            title : "Please Login to access cart.",
+            description : "Redirect to Login Page."
+        })
+
+        setTimeout(ProtectedRoutes, 2000);
     }, [])
     const decreaseHandler = (name : string) => {
         dispatch(minusHandler({name}));
