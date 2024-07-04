@@ -1,3 +1,4 @@
+'use server'
 import Stripe from "stripe"
 import { Order } from "@/models/cart.model";
 import Database from '@/lib/database';
