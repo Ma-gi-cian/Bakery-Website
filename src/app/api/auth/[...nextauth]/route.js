@@ -6,6 +6,10 @@ import {User} from "@/models/user.model";
 import Database from '@/lib/database';
 import { verifyPassword } from '@/lib/auth';
 
+/*
+Revoked authorization for url leak
+*/
+
 
 const handler  =  NextAuth({
     session : {
