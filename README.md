@@ -31,6 +31,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The website is deployed on vercel here - [link](https://bakery-website-smoky.vercel.app/)
+- It has google authentication
+- Stripe integration
+- Page view control ( you cant access certain pages without being logged on )
+- Made it responsive for all views ( please look at it on a computer screen for best viewing experience)
+- will work on make it more appealing to the mobile view later ( currently have many projects running )
